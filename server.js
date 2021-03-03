@@ -5,7 +5,7 @@ const express = require('express'),
 const usersRoutes = require('./routes/api/users'),
     authRoutes = require('./routes/api/auth'),
     profileRoutes = require('./routes/api/profile'),
-    postsRoutes = require('./routes/api/profile');
+    postsRoutes = require('./routes/api/posts');
 
 const PORT = process.env.PORT || 5000;
 
