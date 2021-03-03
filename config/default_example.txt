@@ -1,0 +1,8 @@
+change it to default.json
+
+{
+    "mongoURI": "Your mongoURI",
+    "jwtToken": "jwtpassword",
+    "githubClientId": " your githubclientid",
+    "githubClientSecret": "your github client secret"
+}
