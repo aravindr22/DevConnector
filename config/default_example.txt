@@ -1,4 +1,4 @@
-change it to default.json
+changee it to default.json
 
 {
     "mongoURI": "Your mongoURI",
