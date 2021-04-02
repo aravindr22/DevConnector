@@ -1,18 +1,32 @@
 import React, {Fragment, useEffect} from 'react'
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import {getCurrentProfile} from '../../actions/profile';
 import Spinner from '../layout/Spinner';
 import auth from '../../reducers/auth';
 
-const Dashboard = ({ getCurrentProfile, auth, profile: {profile, loading}}) => {
+const Dashboard = ({ getCurrentProfile, auth: { user }, profile: {profile, loading}}) => {
     useEffect(() => {
         getCurrentProfile();
     }, []);
 
     return loading && profile === null ? <Spinner />: <Fragment>
-        Dashboard
+        <h1 className="large text-primary">Dashboard</h1>
+        <p className="lead">
+            <i className="fas fa-user"></i> Welcome {user && user.name}
+        </p>
+        {profile !==null ? (
+            <Fragment></Fragment>
+        ) : (
+            <Fragment>
+                <p>You Have not yet setup a Profile, Please add some info</p>
+                <Link to="/create-profile" className="btn btn-primary my-1">
+                    Create Profile
+                </Link>
+            </Fragment>
+        )}
     </Fragment>
 }
 
