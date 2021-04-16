@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import {createProfile} from '../../actions/profile';
 
-const CreatProfile = props => {
+const CreatProfile = ({ createProfile, history }) => {
     const [formData, setformData] = useState({
         company: '',
         website: '',
@@ -38,7 +38,13 @@ const CreatProfile = props => {
     } = formData;
 
     const onChange = e => {
-        setformData({...formData, [e.target.name]: e.target.value})
+        setformData({...formData, [e.target.name]: e.target.value});
+        
+    }
+
+    const onSubmit = e => {
+        e.preventDefault();
+        createProfile(formData, history);
     }
 
     return (
@@ -51,7 +57,7 @@ const CreatProfile = props => {
                 profile stand out
             </p>
             <small>* = required field</small>
-            <form className="form">
+            <form className="form" onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
                 <select name="status" value={status} onChange={e => onChange(e)}>
                     <option value="0">* Select Professional Status</option>
@@ -151,11 +157,7 @@ const CreatProfile = props => {
 }
 
 CreatProfile.propTypes = {
-
+    createProfile: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-    
-});
-
-export default connect(mapStateToProps, {createProfile})(CreatProfile);
+export default connect(null, {createProfile})(withRouter(CreatProfile));
