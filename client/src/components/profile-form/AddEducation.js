@@ -4,7 +4,23 @@ import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {addEducation} from '../../actions/profile';
 
-const AddEducation = ({addEducation}) => {
+const AddEducation = ({addEducation, history}) => {
+
+    const [formData, setformData] = useState({
+        school: '',
+        degree: '',
+        fieldofstudy: '',
+        from: '',
+        to: '',
+        current: false,
+        description: ''
+    });
+    const [toDateDisabled, settoDateDisabled] = useState(false); 
+
+    const { school, degree, fieldofstudy, from, to, current, description } = formData;
+
+    const onChange = e => setformData({...formData, [e.target.name]: e.target.value });
+
     return (
         <Fragment>
             <h1 class="large text-primary">
@@ -15,12 +31,17 @@ const AddEducation = ({addEducation}) => {
                 you have attended
             </p>
             <small>* = required field</small>
-            <form class="form">
+            <form class="form" onSubmit={e => {
+                e.preventDefault();
+                addEducation(formData, history)
+            }}>
                 <div class="form-group">
                 <input
                     type="text"
                     placeholder="* School or Bootcamp"
                     name="school"
+                    value={school} 
+                    onChange={e => onChange(e)}
                     required
                 />
                 </div>
@@ -29,24 +50,30 @@ const AddEducation = ({addEducation}) => {
                     type="text"
                     placeholder="* Degree or Certificate"
                     name="degree"
+                    value={degree} 
+                    onChange={e => onChange(e)}
                     required
                 />
                 </div>
                 <div class="form-group">
-                <input type="text" placeholder="Field Of Study" name="fieldofstudy" />
+                    <input type="text" placeholder="Field Of Study" name="fieldofstudy" value={fieldofstudy} 
+                    onChange={e => onChange(e)}/>
                 </div>
                 <div class="form-group">
                 <h4>From Date</h4>
-                <input type="date" name="from" />
+                <input type="date" name="from" value={from} 
+                    onChange={e => onChange(e)}/>
                 </div>
                 <div class="form-group">
-                <p>
-                    <input type="checkbox" name="current" value="" /> Current School or Bootcamp
-                </p>
+                <p><input type="checkbox" name="current" checked={current } value={current} onChange={e => {
+                        setformData({...formData, current: !current})
+                        settoDateDisabled(!toDateDisabled)
+                    }}/>{' '} Current School or Bootcamp</p>
                 </div>
                 <div class="form-group">
                 <h4>To Date</h4>
-                <input type="date" name="to" />
+                <input type="date" name="to" value={to} 
+                    onChange={e => onChange(e)} disabled={toDateDisabled ? 'diabled': ''}/>
                 </div>
                 <div class="form-group">
                 <textarea
@@ -54,6 +81,8 @@ const AddEducation = ({addEducation}) => {
                     cols="30"
                     rows="5"
                     placeholder="Program Description"
+                    value={description} 
+                    onChange={e => onChange(e)}
                 ></textarea>
                 </div>
                 <input type="submit" class="btn btn-primary my-1" />
@@ -67,4 +96,4 @@ AddEducation.propTypes = {
     addEducation: PropTypes.func.isRequired
 }
 
-export default connect(null,{addEducation})(AddEducation);
+export default connect(null,{addEducation})(withRouter(AddEducation));
