@@ -90,3 +90,35 @@ export const addExperience = (formData, history) => async dispatch => {
         });
     }
 }
+
+export const addEducation = (formData, history) => async dispatch => {
+    try {
+        const config ={
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const res = await axios.put('/api/profile/education', formData, config);
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        });
+        
+        dispatch(setAlert("Education Added", 'success'));
+        history.push('/dashboard');
+        
+    } catch (error) {
+        const errors = error.response.data.errors;
+
+        if(errors){
+            errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
+        }
+
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: {msg: error.response.statusText, status: error.response.status}
+        });
+    }
+}
