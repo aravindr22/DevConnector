@@ -4,7 +4,8 @@ import {
     GET_PROFILE,
     PROFILE_ERROR,
     UPDATE_PROFILE,
-    DELETE_ACCOUNT
+    DELETE_ACCOUNT,
+    CLEAR_PROFILE
 } from './types';
 
 //Get current Users Profile
@@ -166,10 +167,11 @@ export const deleteAccountAndProfile = () => async dispatch => {
     if(window.confirm('Are You sure? This can not be undone'));{
         try {
             const res = await axios.delete("/api/profile");
-    
-            dispatch({
-                type: DELETE_ACCOUNT
-            })
+            
+            dispatch({ type: CLEAR_PROFILE });
+            dispatch({ type: DELETE_ACCOUNT });
+
+            dispatch(setAlert("Your account has been permanently deleted"));
         } catch (error) {
             dispatch({
                 type: PROFILE_ERROR,
