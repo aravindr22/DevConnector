@@ -9,7 +9,7 @@ import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
 
-const Dashboard = ({ getCurrentProfile, auth: { user }, profile: {profile, loading}}) => {
+const Dashboard = ({ getCurrentProfile, auth: { user }, profile: {profile, loading}, deleteAccountAndProfile}) => {
     useEffect(() => {
         getCurrentProfile();
     }, []);
