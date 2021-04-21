@@ -7,6 +7,7 @@ import {getProfileById} from '../../actions/profile';
 
 import Spinner from '../layout/Spinner';
 import ProfileTop from './ProfileTop';
+import ProfileAbout from './ProfileAbout';
 
 const Profile = ({match, getProfileById, profile: {profile, loading}, auth}) => {
     useEffect(() => {
@@ -28,6 +29,7 @@ const Profile = ({match, getProfileById, profile: {profile, loading}, auth}) => 
             )}
             <div className="porfile-grid my-1">
                 <ProfileTop profile={profile}/>
+                <ProfileAbout profile={profile}/>
             </div>
         </Fragment>
     )

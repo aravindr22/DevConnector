@@ -14,7 +14,7 @@ const ProfileTop = ({profile: {
         <div class="profile-top bg-primary p-2">
           <img
             class="round-img my-1"
-            src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
+            src={avatar}
             alt=""
           />
           <h1 class="large">{name}</h1>
