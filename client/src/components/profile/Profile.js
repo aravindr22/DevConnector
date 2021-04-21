@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import {getProfileById} from '../../actions/profile';
 
 import Spinner from '../layout/Spinner';
+import ProfileTop from './ProfileTop';
 
 const Profile = ({match, getProfileById, profile: {profile, loading}, auth}) => {
     useEffect(() => {
@@ -25,6 +26,9 @@ const Profile = ({match, getProfileById, profile: {profile, loading}, auth}) => 
                     Edit Profile
                 </Link>
             )}
+            <div className="porfile-grid my-1">
+                <ProfileTop profile={profile}/>
+            </div>
         </Fragment>
     )
 }
@@ -35,9 +39,11 @@ Profile.propTypes = {
     auth: PropTypes.object.isRequired
 }
 
-const mapStateToProps = state => ({
-    profile: state.profile,
-    auth: state.auth
-});
+const mapStateToProps = state => {
+    return {
+        profile: state.profile,
+        auth: state.auth
+    }
+};
 
 export default connect(mapStateToProps, {getProfileById})(Profile);
