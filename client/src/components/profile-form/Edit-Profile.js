@@ -54,7 +54,7 @@ const EditProfile = ({ createProfile, getCurrentProfile, profile: {profile, load
             youtube: loading || !profile.youtube ? '': profile.youtube,
             instagram: loading || !profile.instagram ? '': profile.instagram,
         });
-    }, [loading]);
+    }, [loading, getCurrentProfile, profile]);
 
     const onChange = e => {
         setformData({...formData, [e.target.name]: e.target.value});
@@ -169,7 +169,9 @@ const EditProfile = ({ createProfile, getCurrentProfile, profile: {profile, load
                     </div>
                     <input type="submit" className="btn btn-primary my-1" />
                 </Fragment>}
-                <a className="btn btn-light my-1" href="dashboard.html">Go Back</a>
+                <Link to="/dashboard">
+                    <span class="btn btn-light my-1">Go Back</span>
+                </Link>
             </form>
         </Fragment>
     );

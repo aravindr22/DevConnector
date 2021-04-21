@@ -150,7 +150,9 @@ const CreatProfile = ({ createProfile, history }) => {
                     </div>
                     <input type="submit" className="btn btn-primary my-1" />
                 </Fragment>}
-                <a className="btn btn-light my-1" href="dashboard.html">Go Back</a>
+                <Link to="/dashboard">
+                    <span class="btn btn-light my-1">Go Back</span>
+                </Link>
             </form>
         </Fragment>
     );

@@ -11,7 +11,7 @@ const Profiles = ({ getProfiles, profile: {profiles, loading}}) => {
     
     useEffect(() => {
         getProfiles();
-    }, []);
+    }, [getProfiles]);
 
     if(loading){
         return <Spinnner />
