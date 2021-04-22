@@ -9,6 +9,7 @@ import Spinner from '../layout/Spinner';
 import ProfileTop from './ProfileTop';
 import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
+import ProfileEducation from './ProfileEducation';
 
 const Profile = ({match, getProfileById, profile: {profile, loading}, auth}) => {
     useEffect(() => {
@@ -32,12 +33,20 @@ const Profile = ({match, getProfileById, profile: {profile, loading}, auth}) => 
                 <ProfileTop profile={profile}/>
                 <ProfileAbout profile={profile}/>
                 <div className="profile-exp bg-white p-2">
-                    <h2 className="text-primary"></h2>
+                    <h2 className="text-primary">Experience</h2>
                     {profile.experience.length > 0 ? (<Fragment>
                         {profile.experience.map(experience => (
                             <ProfileExperience key={experience._id} experience={experience}/>
                         ))}
                     </Fragment>) : (<h4>No experience credentials</h4>)}
+                </div>
+                <div className="profile-edu bg-white p-2">
+                    <h2 className="text-primary">Education</h2>
+                    {profile.education.length > 0 ? (<Fragment>
+                        {profile.education.map(education => (
+                            <ProfileEducation key={education._id} education={education}/>
+                        ))}
+                    </Fragment>) : (<h4>No Education credentials</h4>)}
                 </div>
             </div>
         </Fragment>
