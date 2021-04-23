@@ -16,7 +16,7 @@ const Profile = ({match, getProfileById, profile: {profile, loading}, auth}) => 
     useEffect(() => {
         getProfileById(match.params.id);   
     },[getProfileById, match.params.id]);
-    console.log(profile)
+
     if(profile === null || loading){
         return <Spinner />
     }
