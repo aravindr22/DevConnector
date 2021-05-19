@@ -16,8 +16,8 @@ export const getPosts = () => async dispatch => {
         })
     } catch (error) {
         dispatch({
-            type: PROFILE_ERROR,
+            type: POST_ERROR,
             payload: {msg: error.response.statusText, status: error.response.status}
         });
     }
-}
+};
