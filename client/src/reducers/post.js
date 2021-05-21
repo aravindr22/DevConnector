@@ -3,7 +3,8 @@ import {
     POST_ERROR,
     UPDATE_LIKES,
     DELETE_POST,
-    ADD_POST
+    ADD_POST,
+    GET_POST
 } from '../actions/types';
 
 const initialState = {
@@ -29,6 +30,12 @@ export default function(state = initialState, action){
                 posts: state.posts.filter(post => post._id !== payload),
                 loading: false
             }
+        case GET_POST:
+            return {
+                ...state,
+                post: payload,
+                loading: false
+            };
         case ADD_POST:
             return {
                 ...state,
