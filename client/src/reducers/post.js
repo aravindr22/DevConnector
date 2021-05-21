@@ -25,13 +25,13 @@ export default function(state = initialState, action){
                 ...state,
                 posts: payload,
                 loading: false
-            }
+            };
         case DELETE_POST:
             return {
                 ...state,
                 posts: state.posts.filter(post => post._id !== payload),
                 loading: false
-            }
+            };
         case GET_POST:
             return {
                 ...state,
@@ -43,7 +43,7 @@ export default function(state = initialState, action){
                 ...state,
                 posts: [payload, ...state.posts],
                 loading: false
-            }
+            };
         case POST_ERROR:
             return {
                 ...state,
@@ -67,7 +67,7 @@ export default function(state = initialState, action){
                     comments: payload
                 },
                 loading: false
-            }
+            } 
         case REMOVE_COMMENT:
             return {
                 ...state,
