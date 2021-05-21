@@ -1,4 +1,4 @@
-import React,{Fragment, useEffect} from 'react';
+import React,{useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
@@ -8,7 +8,7 @@ import {getGithubRepos} from '../../actions/profile';
 const ProfileGithub = ({username, getGithubRepos, repos}) => {
     useEffect(() => {
         getGithubRepos(username);
-    },[getGithubRepos]);
+    },[getGithubRepos, username]);
 
     return (
         <div className="profile-github">

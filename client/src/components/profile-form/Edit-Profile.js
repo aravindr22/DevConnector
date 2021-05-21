@@ -170,7 +170,7 @@ const EditProfile = ({ createProfile, getCurrentProfile, profile: {profile, load
                     <input type="submit" className="btn btn-primary my-1" />
                 </Fragment>}
                 <Link to="/dashboard">
-                    <span class="btn btn-light my-1">Go Back</span>
+                    <span className="btn btn-light my-1">Go Back</span>
                 </Link>
             </form>
         </Fragment>
